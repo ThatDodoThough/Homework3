@@ -1,6 +1,11 @@
 import torch
 import torch.nn as nn
-from .utils import load_state_dict_from_url
+
+try:
+    from torch.hub import load_state_dict_from_url
+except ImportError:
+    from torch.utils.model_zoo import load_url as load_state_dict_from_url
+
 from gradient_reversal_example import ReverseLayerF
 
 __all__ = ['AlexNet', 'alexnet']
@@ -62,7 +67,7 @@ class AlexNet(nn.Module):
         return x
 
 
-def alexnet(pretrained=False, progress=True, num_classes):
+def alexnet(pretrained=False, progress=True, num_classes=1000):
     r"""AlexNet model architecture from the
     `"One weird trick..." <https://arxiv.org/abs/1404.5997>`_ paper.
     Args:

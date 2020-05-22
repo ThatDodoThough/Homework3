@@ -6,7 +6,7 @@ try:
 except ImportError:
     from torch.utils.model_zoo import load_url as load_state_dict_from_url
 
-from gradient_reversal_example import ReverseLayerF
+from .gradient_reversal_example import ReverseLayerF
 
 __all__ = ['AlexNet', 'alexnet']
 
